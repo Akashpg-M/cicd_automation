@@ -1,0 +1,28 @@
+---
+- name: Prepare Development Workspace
+
+  hosts: local
+  connection: local
+
+  tasks:
+
+    - name: Create project directories
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/devops_project/{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - src
+        - logs
+        - reports
+
+    - name: Create project information file
+      ansible.builtin.copy:
+        dest: "{{ ansible_env.HOME }}/devops_project/project_info.txt"
+        content: |
+          Project Name: Azure CI/CD Demo
+          Language: Java
+          Build Tool: Maven
+          Containerization: Docker
+          Cloud Platform: Microsoft Azure
+        mode: '0644'
