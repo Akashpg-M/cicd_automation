@@ -1,0 +1,11 @@
+.git
+.github
+.mvn
+ansible
+k8s
+src
+*.md
+mvnw
+mvnw.cmd
+pom.xml
+HELP.md
