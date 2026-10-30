@@ -1,0 +1,16 @@
+.git
+.github
+.gitignore
+.dockerignore
+
+.mvn
+mvnw
+mvnw.cmd
+pom.xml
+
+src
+ansible
+k8s
+report
+*.md
+*.txt
