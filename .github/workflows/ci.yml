@@ -75,3 +75,21 @@ jobs:
         run: |
           docker push "$ACR_LOGIN_SERVER/$IMAGE_NAME:${GITHUB_SHA}"
           docker push "$ACR_LOGIN_SERVER/$IMAGE_NAME:latest"
+
+      
+      - name: Get AKS Credentials
+        if: github.event_name == 'push'
+        run: |
+          az aks get-credentials \
+            --resource-group rg-cicd-lab \
+            --name aks-cicd-lab \
+            --admin \
+            --overwrite-existing
+
+      - name: Deploy Application to AKS
+        if: github.event_name == 'push'
+        run: |
+          kubectl set image deployment/azure-cicd-app \
+            springboot-app="$ACR_LOGIN_SERVER/$IMAGE_NAME:${GITHUB_SHA}"
+
+          kubectl rollout status deployment/azure-cicd-app --timeout=180s
