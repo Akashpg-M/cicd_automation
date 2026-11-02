@@ -29,7 +29,15 @@ jobs:
     steps:
       # 1. Download source code
       - name: Checkout Source Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      
+      # 2. Scan repository for accidentally committed secrets
+      - name: Scan for Secrets using Gitleaks
+        uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # 2. Configure Java
       - name: Set Up Java 17
