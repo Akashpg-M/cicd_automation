@@ -53,6 +53,12 @@ jobs:
           chmod +x mvnw
           ./mvnw --batch-mode clean verify
 
+      # 4. Analyse code using SonarQube Cloud
+      - name: SonarQube Code Analysis
+        uses: SonarSource/sonarqube-scan-action@v8
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       # 4. Authenticate with Azure using OIDC
       - name: Azure Login
         if: github.event_name == 'push'
