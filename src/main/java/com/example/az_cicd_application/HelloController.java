@@ -14,7 +14,7 @@ public class HelloController {
         return """
                 Deployment successful!
                 Application: Azure CI/CD Demo
-                Version: v2
+                Version: v2.1
                 """;
     }
 
