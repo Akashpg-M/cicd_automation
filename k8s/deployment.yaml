@@ -19,8 +19,7 @@ spec:
     spec:
       containers:
         - name: springboot-app
-
-          image: akashcicdacr2026.azurecr.io/az_cicd_application:3e04aecff80f514731a6de30e38c67bfed00888c
+          image: IMAGE_PLACEHOLDER
 
           ports:
             - containerPort: 8080
